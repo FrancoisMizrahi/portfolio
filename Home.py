@@ -10,7 +10,7 @@ st.set_page_config(
 def load_css():
     st.markdown("""
         <style>
-        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&display=swap");
 
         html, body, [class*="css"] {
             font-family: 'Playfair Display', sans-serif;
@@ -29,11 +29,11 @@ leftcol, rightcol = st.columns([2, 2])
 
 with leftcol:
     multi = """
-        Hello, I am **Francois Mizrahi**
-        
-        
-        Let’s discover the world through Data
-        I'm a data scienti
+    <div style="text-align: left;">
+    <p>Hello, I am</p>
+    <h2>Francois Mizrahi</h2>
+    <p>Let’s discover the world through Data</p>
+    </div>
     """
-    st.markdown(multi)
+    st.markdown(multi, unsafe_allow_html=True)
 
