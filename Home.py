@@ -5,7 +5,7 @@ st.set_page_config(
     layout="wide",
     page_title="Porfolio")
 
-style.load_css()
+# style.load_css()
 
 
 leftcol, rightcol = st.columns([2, 2])
@@ -16,8 +16,7 @@ leftcol, rightcol = st.columns([2, 2])
 with leftcol:
     multi = """
     <div style="text-align: left;">
-    <p>Hello, I am</p>
-    <h2>Francois Mizrahi</h2>
+    <h1>Hi, I'm Francois Mizrahi</h1>
     <p>Let’s discover the world through Data</p>
     </div>
     """
