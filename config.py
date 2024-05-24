@@ -2,4 +2,4 @@
 label_font_size = 24
 
 # size of all viz
-figsize = (20,10)
+figsize = (20,15)

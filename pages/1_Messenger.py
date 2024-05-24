@@ -66,18 +66,20 @@ with maincol:
     
 
     st.divider()
+    print("######### Number of Messages per Person #########")
     ######### Viz Number of Messages per Person #########
     st.subheader("Number of Messages per Person")    
     df_sorted = participant_message_counts.sort_values(by='messages_count', ascending=False)
     
     fig, ax = plt.subplots(figsize=figsize)
-    sns.barplot(x='messages_count', y='index', data=df_sorted, color='#67c0fc')
+    sns.barplot(x='messages_count', y='index', data=df_sorted, color='#017fad')
     plt.xlabel('Messages Count', fontsize=label_font_size)
     plt.ylabel('', fontsize=label_font_size)
     st.pyplot(fig)
 
     
     st.divider()
+    print("######### Viz Number of Messages Evolution Over Time #########")
     ######### Viz Number of Messages Evolution Over Time #########
     st.subheader("Number of Messages Evolution Over Time")
     grannularity = st.selectbox('Select grannularity', ('Monthly', 'Daily'))
@@ -97,20 +99,21 @@ with maincol:
 
 
     st.divider()
+    print("######### Viz Number of Messages Evolution Over Time #########")
     ######### Viz Number of Messages Evolution Over Time #########
     st.subheader("Number of Messages Evolution Over Time")
 
     users = st.multiselect(
         'Select Users',
-        participant_full_df.sender_name.unique(),
-        participant_full_df.sender_name.unique())
+        sorted(participant_full_df.sender_name.unique()),
+        sorted(participant_full_df.sender_name.unique()))
 
     df_messages_year_month_sender = participant_full_df.groupby(by=["sender_name", "year", "month"]).count()[['index']].reset_index()
     df_messages_year_month_sender['date'] = pd.to_datetime(df_messages_year_month_sender[['year', 'month']].assign(day=1))
 
     fig, ax = plt.subplots(figsize=figsize)
     for n in users:
-        sns.lineplot(x='date', y='index', data=df_messages_year_month_sender[df_messages_year_month_sender["sender_name"] == n], label=n)
+        sns.lineplot(x='date', y='index', data=df_messages_year_month_sender[df_messages_year_month_sender["sender_name"] == n], label=n, color='#017fad')
     plt.title('Number of messages Evolution Over Time')
     plt.xlabel('Date', fontsize=label_font_size)
     plt.ylabel('Number of Messages', fontsize=label_font_size)
@@ -119,6 +122,7 @@ with maincol:
 
 
     st.divider()
+    print("######### Viz Number of Messages #########")
     ######### Viz Number of Messages #########
     st.subheader("Number of Messages")
     grannularity = st.selectbox(
@@ -129,7 +133,7 @@ with maincol:
     if grannularity == "Month":
         df_messages_avg_month = participant_full_df.groupby(by=["year", "month"]).count()[['index']].reset_index()
         df_messages_avg_month = df_messages_avg_month.groupby(by=["month"]).mean()[['index']].reset_index()
-        sns.barplot(x='month', y='index', data=df_messages_avg_month, color='#67c0fc')
+        sns.barplot(x='month', y='index', data=df_messages_avg_month, color='#017fad')
         plt.title('Average Number of Messages per Month')
         plt.xlabel('Month', fontsize=label_font_size)
         plt.ylabel('Number of Messages', fontsize=label_font_size)
@@ -137,14 +141,14 @@ with maincol:
     elif grannularity == "Day of Month":
         df_messages_avg_month_day = participant_full_df.groupby(by=["year", "month", 'day']).count()[['index']].reset_index()
         df_messages_avg_month_day = df_messages_avg_month_day.groupby(by=["day"]).mean()[['index']].reset_index()
-        sns.barplot(x='day', y='index', data=df_messages_avg_month_day, color='#67c0fc')
+        sns.barplot(x='day', y='index', data=df_messages_avg_month_day, color='#017fad')
         plt.title('Average Number of Messages per Day of the Month')
         plt.xlabel('Day of the Month', fontsize=label_font_size)
         plt.ylabel('Number of Messages', fontsize=label_font_size)
 
     else:
         df_messages_day_week = participant_full_df.groupby(by=['day_week']).count()[['index']].reset_index()
-        sns.barplot(x='day_week', y='index', data=df_messages_day_week, color='#67c0fc')
+        sns.barplot(x='day_week', y='index', data=df_messages_day_week, color='#017fad')
         plt.title('Number of Messages per Day of the Week')
         plt.xlabel('Day of the Week', fontsize=label_font_size)
         plt.ylabel('Number of Messages', fontsize=label_font_size)
@@ -152,11 +156,12 @@ with maincol:
 
 
     st.divider()
+    print("######### Viz All Sent Messages #########")
     ######### Viz All Sent Messages #########
     st.subheader("All Sent Messages")
     grannularity = st.selectbox(
         'Select visualization',
-        ["Scatter Plot", "Heat Map"])
+        ["Scatter Plot + Heat Map", "Scatter Plot", "Heat Map"])
 
     participant_full_df_2 = participant_full_df.copy()
 
@@ -173,16 +178,14 @@ with maincol:
 
     # Plotting
     fig, ax = plt.subplots(figsize=figsize)
-    sns.set_style("dark")
-
-    sns.kdeplot(x='datetime', y='seconds', data=participant_full_df_2, cmap="mako", fill=True, bw_adjust=0.5)
-    sns.scatterplot(x='date', y='seconds', data=participant_full_df_2, s=20, alpha=0.5, edgecolor = None)
-
-
-    # if grannularity == "Scatter Plot":
-    #     sns.scatterplot(x='date', y='seconds', data=participant_full_df_2, s=20, alpha=0.5, edgecolor = None)
-    # else:
-    #     sns.kdeplot(x='datetime', y='seconds', data=participant_full_df_2, cmap="Blues", fill=True, bw_adjust=0.5)
+    sns.set_style("white")
+    if grannularity == "Scatter Plot":
+        sns.scatterplot(x='date', y='seconds', data=participant_full_df_2, s=30, alpha=0.3, edgecolor = None, color="#017fad")
+    elif grannularity == "Heat Map":
+        sns.kdeplot(x='datetime', y='seconds', data=participant_full_df_2, cmap="Reds", fill=True, bw_adjust=0.75)
+    else:
+        sns.kdeplot(x='datetime', y='seconds', data=participant_full_df_2, cmap="Reds", fill=True, bw_adjust=0.75)
+        sns.scatterplot(x='date', y='seconds', data=participant_full_df_2, s=30, alpha=0.3, edgecolor = None, color='#017fad')
     
     plt.xlabel('Date', fontsize=label_font_size)
     plt.ylabel('Time of the day', fontsize=label_font_size)
@@ -196,7 +199,9 @@ with maincol:
     plt.tight_layout()
     st.pyplot(fig)
 
+
     st.divider()
+    print("######### Viz Number of Messages Evolution Over Time #########")
     ######### Viz Number of Messages Evolution Over Time #########
     st.subheader("Number of Messages")
     participant_full_df_3 = participant_full_df.copy()
