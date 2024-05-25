@@ -1,5 +1,5 @@
+import streamlit as st
 from openai import OpenAI
-from secrets import CHATGPT_API_KEY
 
 
 def ask_chatgpt(question):
@@ -38,7 +38,7 @@ def ask_chatgpt(question):
     Make sure to provide responses that are engaging, informative, and reflective of Francois's personality and preferences.
     """
 
-    client = OpenAI(api_key=CHATGPT_API_KEY)
+    client = OpenAI(api_key=st.secrets.api_key.CHATGPT_API_KEY)
     completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
