@@ -1,5 +1,6 @@
 import streamlit as st
 import style
+from secrets import CHATGPT_API_KEY
 
 st.set_page_config(
     layout="wide",
@@ -21,4 +22,6 @@ with leftcol:
     </div>
     """
     st.markdown(multi, unsafe_allow_html=True)
+
+
 
