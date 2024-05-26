@@ -4,10 +4,15 @@ import streamlit as st
 def load_css():
     st.markdown("""
         <style>
-        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&display=swap");
-
-        html, body, [class*="css"] {
-            font-family: 'Playfair Display', sans-serif;
+        body {
+            background: linear-gradient(135deg, #FFD4DD, #000395);
+            height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         </style>
         """, 
