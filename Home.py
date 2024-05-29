@@ -16,22 +16,26 @@ st.markdown("""
         [data-baseweb="base-input"]{
         background: #fffbfb;
         border: 20px;
-        box-shadow: 10px 5px 5px red !important;
         border-radius: 3px;
         }
-            
+        
+        .container-center {
+            display: flex;
+            justify-content: center;
+            }
+        
         .circle-image {
-              width: 200px;
-              height: 200px;
-              border-radius: 50%;
-              overflow: hidden;
-              box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
           }
           
           .circle-image img {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
           }
     </style>
 
@@ -42,13 +46,15 @@ leftcol, maincol, rightcol = st.columns([1, 10, 1])
 with maincol:
 
     multi = """
-    <div class="circle-image">
-        <img src="app/static/Photo_application.jpg" alt="Face photo">
+    <div class="container-center">
+        <img src="app/static/Photo_application.jpg" alt="Face photo" class="circle-image">
     </div>
-    <div style="text-align: left;">
+    <div style="text-align: center;">
         <h1>
             Hi, I'm Francois Mizrahi
         </h1>
+    </div>
+    <div style="text-align: left;">
         <p>
             Hey there, welcome to my portfolio! 
             I'm passionate about data and technology. My expertise covers a wide range of topics, from Data Analytics and Data Science to Operation Research, Product Management and more.
