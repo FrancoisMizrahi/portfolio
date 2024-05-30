@@ -5,6 +5,7 @@ import seaborn as sns
 
 from config import label_font_size, figsize
 
+from style import load_project_style
 from utils.tfl_bike_sharing_utils import (
     get_tfl_data,
     clean_tfl_data,
@@ -24,19 +25,26 @@ df = clean_tfl_data(df)
 full_monthly_averages = get_monthly_averages(df)
 bike_pw = get_weekly_deviations(df)
 
+load_project_style()
+
 leftcol, maincol, rightcol = st.columns([1, 10, 1])
 with maincol:
 
     st.markdown("""
-    <div style="text-align: left;">
-        <h1>
-            Excess rentals in TfL bike sharing
-        </h1>
-        <p>
-            In this project we will focus on the TfL Dataset. The goal is to better visualize the changes on the number of Bike hired.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+                 <div class="container-center">
+                    <img src="app/static/bikes.jpg" alt="Face photo" class="circle-image">
+                </div>
+                <div style="text-align: center;">
+                    <h1>
+                        Excess rentals in TfL bike sharing
+                    </h1>
+                </div>
+                <div style="text-align: left;">
+                    <p>
+                        In this project we will focus on the TfL Dataset. The goal is to better visualize the changes on the number of Bike hired.
+                    </p>
+                </div>
+                """, unsafe_allow_html=True)
     
     st.divider()
     

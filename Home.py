@@ -1,45 +1,12 @@
 import streamlit as st
-# import style
 from utils.home_utils import ask_chatgpt
+from style import load_home_style
 
 st.set_page_config(
     layout="wide",
     page_title="Porfolio")
 
-# style.load_css()
-st.markdown("""
-     <style>    
-        .main {
-            background: linear-gradient(180deg, #FFFFFF, #d9dadb);
-            }
-        
-        [data-baseweb="base-input"]{
-        background: #fffbfb;
-        border: 20px;
-        border-radius: 3px;
-        }
-        
-        .container-center {
-            display: flex;
-            justify-content: center;
-            }
-        
-        .circle-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-          }
-          
-          .circle-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
-    </style>
-
-    """, unsafe_allow_html=True)
+load_home_style()
 
 leftcol, maincol, rightcol = st.columns([1, 10, 1])
 

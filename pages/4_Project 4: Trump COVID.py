@@ -8,7 +8,7 @@ import seaborn as sns
 
 from config import label_font_size, figsize
 
-
+from style import load_project_style
 from utils.trump_covid_utils import (
     get_trump_covid_data
 )
@@ -20,13 +20,21 @@ st.set_page_config(
 
 data = get_trump_covid_data()
 
+load_project_style()
+
 leftcol, maincol, rightcol = st.columns([1, 10, 1])
 with maincol:
+
     st.markdown("""
-                <div style="text-align: left;">
+                 <div class="container-center">
+                    <img src="app/static/Trump.jpg" alt="Face photo" class="circle-image">
+                </div>
+                <div style="text-align: center;">
                     <h1>
                         Trump and COVID-19
                     </h1>
+                </div>
+                <div style="text-align: left;">
                     <h2>
                         What is the relationship between Trump and anti-Vax ?
                     </h2>
@@ -39,7 +47,7 @@ with maincol:
                         <li>Finally, we also need an estimate of the <a href="https://www.ers.usda.gov/webdocs/DataFiles/48747/PopulationEstimates.csv?v=2232">population of each county</a> </li>
                     </lu>
                 </div>
-    """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
     
     st.divider()
 

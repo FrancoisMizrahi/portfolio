@@ -8,7 +8,7 @@ import seaborn as sns
 
 from config import label_font_size, figsize
 
-
+from style import load_project_style
 from utils.omega_group_pay_discrimination_utils import (
     get_omega_data,
     get_group_stat,
@@ -21,21 +21,30 @@ st.set_page_config(
 
 omega = get_omega_data()
 
+load_project_style()
+
+
 leftcol, maincol, rightcol = st.columns([1, 10, 1])
 with maincol:
+
     st.markdown("""
-    <div style="text-align: left;">
-        <h1>
-            Omega group pay discrimination
-        </h1>
-        <p>
-            At the last board meeting of Omega Group Plc., the headquarters of a large multinational company, the issue was raised that women were being discriminated in the company, in the sense that the salaries were not the same for male and female executives. A quick analysis of a sample of 50 employees (of which 24 men and 26 women) revealed that the average salary for men was about 8,700 higher than for women. This seemed like a considerable difference, so it was decided that a further analysis of the company salaries was warranted.
-        </p>
-        <p>
-            The objective is to find out whether there is indeed a significant difference between the salaries of men and women, and whether the difference is due to discrimination or whether it is based on another, possibly valid, determining factor.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+                 <div class="container-center">
+                    <img src="app/static/pay_gap.jpg" alt="Face photo" class="circle-image">
+                </div>
+                <div style="text-align: center;">
+                    <h1>
+                        Omega group pay discrimination
+                    </h1>
+                </div>
+                <div style="text-align: left;">
+                    <p>
+                        At the last board meeting of Omega Group Plc., the headquarters of a large multinational company, the issue was raised that women were being discriminated in the company, in the sense that the salaries were not the same for male and female executives. A quick analysis of a sample of 50 employees (of which 24 men and 26 women) revealed that the average salary for men was about 8,700 higher than for women. This seemed like a considerable difference, so it was decided that a further analysis of the company salaries was warranted.
+                    </p>
+                    <p>
+                        The objective is to find out whether there is indeed a significant difference between the salaries of men and women, and whether the difference is due to discrimination or whether it is based on another, possibly valid, determining factor.
+                    </p>
+                </div>
+                """, unsafe_allow_html=True)
     
     st.divider()
     
